@@ -167,7 +167,7 @@ def parse_input_build_hashes(df, numHashes):
             
 if __name__=="__main__":
     df, t2, t3, t4 = parse_input()
-    numHashes = 150
+    numHashes = 50
     maxNumConflicts = 0
     totalRes = []
     indicesRemaining = [i for i in range(len(df))]   # Initially all indices are remaining
