@@ -85,7 +85,7 @@ def makeAssignments(lledoList, t2, t3, t4, maxNumConflicts=0):
     # Repeat for the teams (t4, t3, t2)
     for j, (t, m) in enumerate(zip(teams, members)):
         # For every team
-        for i in tqdm(range(t)):
+        for i in range(t):
             if remainingPizzas == 0:
                 # Stop in advance
                 break
@@ -109,7 +109,7 @@ def makeAssignments(lledoList, t2, t3, t4, maxNumConflicts=0):
                 if len(pizzasTaken) == m:
                     break
             if len(pizzasTaken) == m:
-                result.append(([m] + [x.id for x in pizzasTaken]))
+                result.append([x.id for x in pizzasTaken])
                 teamsServed[j] += 1
                 indicesToDrop += [x.id for x in pizzasTaken]
 
@@ -127,21 +127,23 @@ def printRes(result):
     """
     print(len(result))
     for el in result:
-        print(" ".join([str(x) for x in el]))
+        print("{} {}".format(
+            len(el),
+            " ".join([str(x) for x in el])))
 
 
 def parse_input():
     n_pizzas, teams_2, teams_3, teams_4 = map(int, stdin.readline().strip().split(" "))
-    
+    pizzas_sets = {}
     pizzas = []
 
-    for _ in range(n_pizzas):
+    for i, _ in enumerate(range(n_pizzas)):
         _, *ingredients = stdin.readline().strip().split(" ")
         pizzas.append("|".join(ingredients))
-    
+        pizzas_sets[i] = set(ingredients)
     df = pd.Series(pizzas).str.get_dummies()
     
-    return df, teams_2, teams_3, teams_4
+    return df, teams_2, teams_3, teams_4, pizzas_sets
 
 
 def min_hash(df: pd.DataFrame):
@@ -163,10 +165,56 @@ def parse_input_build_hashes(df, numHashes):
     min_hashes_list = np.array([min_hash(sorted_df) for x in range(numHashes)]).T
 
     return zip(sorted_df.index, min_hashes_list)
-        
+
+
+def changePizzaInTeams(i, j, result, pizzas_sets):
+    set1 = set()
+    set2 = set()
+    for el in result[i]:
+        set1 = set1.union(pizzas_sets[el])
+    for el in result[j]:
+        set2 = set2.union(pizzas_sets[el])
+    best_points = len(set1)**2 + len(set2)**2
+    best_team1 = result[i]
+    best_team2 = result[j]
+    improved = 0
+    for k in range(len(result[i])):
+        for l in range(len(result[j])):
+            # Invert
+            result[i][k], result[j][l] = result[j][l], result[i][k]
+            set1 = set()
+            set2 = set()
+            for el in result[i]:
+                set1 = set1.union(pizzas_sets[el])
+            for el in result[j]:
+                set2 = set2.union(pizzas_sets[el])
+            points = len(set1)**2 + len(set2)**2
+            if points > best_points:
+                # eprint("improved")
+                best_points = points
+                best_team1 = result[i].copy()
+                best_team2 = result[j].copy()
+                improved = 1 
+            # Re-invert back
+            result[i][k], result[j][l] = result[j][l], result[i][k]
+    result[i] = best_team1
+    result[j] = best_team2
+    return improved
             
+
+def compute_points(totalRes, pizzas_sets):
+    points = 0
+    for pizzas in totalRes:
+        myset = set()
+        for p in pizzas:
+            myset = myset.union(pizzas_sets[p])
+        points += len(myset)**2
+    return points
+
+
 if __name__=="__main__":
-    df, t2, t3, t4 = parse_input()
+    df, t2, t3, t4, pizzas_sets = parse_input()
+    # eprint(pizzas_sets)
     numHashes = 50
     maxNumConflicts = 0
     totalRes = []
@@ -182,6 +230,13 @@ if __name__=="__main__":
         df = df.drop(indicesToDrop)
         totalRes += result
         maxNumConflicts += 1
+    eprint("points before local improvement {}".format(compute_points(totalRes, pizzas_sets)))
+    improvements = 0
+    for i in tqdm(range(1000000)):
+        j, k = np.random.randint(0, len(totalRes)), np.random.randint(0, len(totalRes))
+        improvements += changePizzaInTeams(j, k, totalRes, pizzas_sets)
+    eprint("points after local improvement {}".format(compute_points(totalRes, pizzas_sets)))
+    eprint("Number of improvements {}".format(improvements))
     printRes(totalRes)
     
 

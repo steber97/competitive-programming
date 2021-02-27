@@ -1,10 +1,13 @@
-python main.py < a_example > a.out
+python3 solution.py < a.txt > a.out
 echo "run a"
-python main.py < b_little_bit_of_everything.in > b.out
+python3 solution.py < b.txt > b.out
 echo "run b"
-python main.py < c_many_ingredients.in > c.out
+python3 solution.py < c.txt > c.out
 echo "run c"
-python main.py < d_many_pizzas.in > d.out
+python3 solution.py < d.txt > d.out
 echo "run d"
-python main.py < e_many_teams.in > e.out
+python3 solution.py < e.txt > e.out
 echo "run e"
+python3 solution.py < f.txt > f.out
+echo "run f"
+
