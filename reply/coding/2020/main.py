@@ -84,7 +84,7 @@ def computeAssignments(office, merged_df, df, deskType, developer=True):
                                         id_empl = office[i+k][j+l]
                                     elif not developer and office[i+k][j+l] >= len(df_devs):
                                         id_empl = office[i+k][j+l] - len(df_devs)
-                                    else: 
+                                    else:
                                         continue
                                     # There is an employee
                                     tmp = merged_df[
