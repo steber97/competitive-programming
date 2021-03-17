@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define TESTING
+// #define TESTING
 
 #ifdef TESTING 
 #define DEBUG cout << "====TESTING====\n" 
@@ -45,9 +45,10 @@ vi take_three_ints(int N, int K){
     vi result(3);
     bool found = false;
     FOR(i,1,N+1){
-        FOR(j,i,N+1){
-            FOR(p,j,N+1){
-                if(i*(N-2) + j + p == K and ((i==j and j==p) or (i!=j and i!=p and p!=j))){
+        FOR(j,1,N+1){
+            FOR(p,1,N+1){
+                if(i*(N-2) + j + p == K and
+                 ((i==j and j==p) or (i!=j and i!=p and p!=j) or (i != j and j == p))){
                     result = {i,j,p};
                     return result;
                 }
@@ -77,21 +78,22 @@ vi find_augmenting_path(int i, vi& matching, vvi& graph, vi& matching2){
             if (matching[graph[n][j]] == -1){
                 // Found an augmenting path.
                 // The result, which is an augmenting path, oscillates between bip1 and bip2.
-                int start = i;
-                while(start != n){
-                    result.push_back(start);
-                    result.push_back(parent[start]);
-                    start = matching[parent[start]];
-                }
-                result.push_back(n);
                 result.push_back(graph[n][j]);
+                int start = n;
+                while(start != i) {
+                    result.push_back(start);
+                    result.push_back(matching2[start]);
+                    start = parent[start];
+                }
+                result.push_back(i);
+                reverse(result.begin(), result.end());
                 return result;
             }
         }
         FOR(j,0,graph[n].size()){
             if (!visited[matching[graph[n][j]]]){
                 q.push(matching[graph[n][j]]);
-                parent[n] = graph[n][j];
+                parent[matching[graph[n][j]]] = n;
                 visited[matching[graph[n][j]]] = true;
             }
         }
@@ -164,7 +166,7 @@ vvi build_graph(vector<unordered_set<int>>& columns, int i, vi& three_ints){
         columns[1].insert(three_ints[1]);
         FOR(j,2,columns.size()){
             FOR(l,0,columns.size()){
-                if (l!=three_ints[0] and l!=three_ints[1]){
+                if (l!=three_ints[0] and l!=three_ints[1] and columns[j].find(l)==columns[j].end()){
                     graph[j].push_back(l);
                 }
             }
@@ -197,10 +199,15 @@ int main(){
         int N,K;
         cin >> N >> K;
         if(N==2){
-            if (K == 3){
-                // Only possible case
+            // Only possible cases
+            if (K == 2){
                 cout << "Case #" << t+1 << ": POSSIBLE" << endl;
                 cout << "1 2" << endl << "2 1" << endl;
+                continue;
+            }
+            if (K==4){
+                cout << "Case #" << t+1 << ": POSSIBLE" << endl;
+                cout << "2 1" << endl << "1 2" << endl;
                 continue;
             }
         }
