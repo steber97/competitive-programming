@@ -36,3 +36,8 @@ This repo collects a few of the algorithm problems I have done so far in various
     - [e](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round710/e): segment trees
 - Round 106
     - [Martian Strings](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round106/martianStrings): suffix array + segment tree
+- Round 107
+    - [a](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round170/a)
+    - [b](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round170/b)
+    - [c](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round170/c)
+    - [d](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round170/d)
