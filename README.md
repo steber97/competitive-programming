@@ -22,7 +22,10 @@ This repo collects a few of the algorithm problems I have done so far in various
 - 2017
 
 ## Codeforces
-
+- Round 715
+    - [a](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round715/a)
+    - [b](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round715/b)
+    - [c](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round715/c): DP with memoization
 - Round 712
     - [a](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round712/a)
     - [b](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round712/b)
