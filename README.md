@@ -22,6 +22,8 @@ This repo collects a few of the algorithm problems I have done so far in various
 - 2017
 
 ## Codeforces
+- Round 718
+    - [a](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round718/c)
 - Round 715
     - [a](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round715/a)
     - [b](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round715/b)
