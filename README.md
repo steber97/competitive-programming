@@ -23,7 +23,8 @@ This repo collects a few of the algorithm problems I have done so far in various
 
 ## Codeforces
 - Round 718
-    - [a](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round718/c)
+    - [c](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round718/c)
+    - [d](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round718/d): DP
 - Round 715
     - [a](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round715/a)
     - [b](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round715/b)
