@@ -47,3 +47,7 @@ This repo collects a few of the algorithm problems I have done so far in various
     - [b](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round170/b)
     - [c](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round170/c)
     - [d](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round170/d)
+- Educational round 112
+    - [a](https://github.com/steber97/competitive-programming/tree/main/codeforces/educationalRound112/a)
+    - [b](https://github.com/steber97/competitive-programming/tree/main/codeforces/educationalRound112/b)
+    - [c](https://github.com/steber97/competitive-programming/tree/main/codeforces/educationalRound112/c)
