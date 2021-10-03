@@ -62,3 +62,8 @@ This repo collects a few of the algorithm problems I have done so far in various
     - [b](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round736/b)
     - [c](https://github.com/steber97/competitive-programming/tree/main/codeforces/Round736/c)
   
+## Swerc
+
+- 2021 
+    - [a](https://github.com/steber97/competitive-programming/tree/main/swerc/2021/contest/a)
+    
