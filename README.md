@@ -66,4 +66,6 @@ This repo collects a few of the algorithm problems I have done so far in various
 
 - 2021 
     - [a](https://github.com/steber97/competitive-programming/tree/main/swerc/2021/contest/a)
+    - [c](https://github.com/steber97/competitive-programming/tree/main/swerc/2021/contest/a): Union Find Set and geometry.
+    - [e](https://github.com/steber97/competitive-programming/tree/main/swerc/2021/contest/e)
     

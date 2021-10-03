@@ -1,116 +1,160 @@
-#include  <bits/stdc++.h>
+#include <bits/stdc++.h>
+#include <climits>
+#include <cmath>
+#include <unordered_set>
+
 using namespace std;
-// #include <ext/pb_ds/assoc_container.hpp> 
-// #include <ext/pb_ds/tree_policy.hpp> 
- 
-// using namespace __gnu_pbds;
- 
-#define mp make_pair
-#define fi first
-#define se second
-#define all(v) v.begin(),v.end()
-#define allarr(a) a , a + n
-#define ll long long
-#define ull unsigned long long 
-#define pb push_back
-#define fastio ios_base::sync_with_stdio(false) ; cin.tie(NULL); cout.tie(NULL)
-#define sz(x)  (int)x.size() 
-typedef pair<int, int> pi;
-typedef pair<double,double> pd; 
-typedef pair<ll,ll> pll; 
-typedef pair<int,pi> trp ;
-typedef vector<pi> vpi;
-typedef vector<pll> vpll ;
 
-const int MAXN = 1005 ;
-const double eps = 1e-7; 
+//#define TESTING
 
-pd mid(pd a , pd b ){
-  return (pd){(a.fi+b.fi)/2.0,(b.se+a.se)/2.0}; 
-}
+#ifdef TESTING 
+#define DEBUG cout << "====TESTING====\n" 
+#define VALUE(x) cout << "The value of " << #x << " is " << x << endl 
+#define PAIR(x) cout << x.first << "\t" << x.second << endl
+#define VECT(x) for (int u = 0; u<x.size(); u++) cout << x[u] << endl; cout << endl
+#define COUT(x) cout << x 
 
-double dist(pd a , pd b){
-  return sqrt( ( a.fi - b.fi )*( a.fi - b.fi ) + ( a.se - b.se )*( a.se - b.se ) ) ; 
-}
+#else 
+#define DEBUG 
+#define VALUE(x) 
+#define PAIR(x) 
+#define VECT(x)
+#define COUT(x)
+#endif 
 
-bool intersect(pd a,pd b,double  r){
-    // Modify this
-  return (dist(a,b) < r*2.0) && (abs(dist(a,b) - r*2.0) > eps) ;
-}
-int par [1005];
-int find_set(int u){
-    if( par[u] == u )return u ;
-    return par[u]=find_set(par[u]);
-}
-void union_set(int u , int v ){
-    u = find_set(u);
-    v = find_set(v);
-    if( u != v ) 
-    par[u] = v;
-}
-int main(){
-  int N ; 
-  double end_x , end_y ; 
-  cin >> end_x >> end_y ;   
-  cin >> N ; 
+typedef long long int ll;
+typedef vector<int> vi;
+typedef vector<long long> vll;
+typedef vector<vector<int>> vvi;
+typedef pair<int, int> ii;
+typedef vector<ii> vii;
+typedef vector<bool> vb;
+#define FOR(i,a,b) for (int i=(a); i<(b); i++)
+#define MODULUS 10000
+#define DELTA 0.0000001
+#define EPS 0.000001
 
-  vector<pd> pts ; 
-
-  for(int i = 0 ; i < N ; i++ ){
-    double x , y ; 
-    cin >> x >> y ;
-    pts.pb({x,y}) ;
-  }
-
-
-  double l = 0 , r  = 2e6 , ans = -1e9 ; 
-
-  while ( abs(r-l) > eps ){
-    double ra = ( l + r ) / 2.0 ;
-
-    for(int i=0;i<N;i++){
-      par[i] = i ; 
-    }
-
-
-    for(int i = 0 ; i < N ; i++ ){
-      for(int j = i + 1 ; j < N ; j++ ){
-        if( intersect(pts[i],pts[j],ra) ){
-          union_set(i,j); 
+class UnionFind {
+    // OOP style
+    private :
+        vi p , rank , setSize ;
+        // remember : vi is vector < int >
+        int numSets ;
+    public:
+        UnionFind ( int N ) {
+        setSize.assign (N , 1) ; 
+        numSets = N ; 
+        rank.assign (N , 0) ;
+        p.assign (N , 0) ; for ( int i = 0; i < N ; i ++) p [ i ] = i ; }
+        int findSet ( int i ) { return ( p [ i ] == i ) ? i : ( p [ i ] = findSet ( p [ i ]) ) ; }
+        bool isSameSet ( int i , int j ) { return findSet ( i ) == findSet ( j ) ; }
+        void unionSet ( int i , int j ) {
+            if (! isSameSet (i , j ) ) {
+                numSets --;
+                int x = findSet ( i ) , y = findSet ( j ) ;
+                // rank is used to keep the tree short
+                if ( rank [ x ] > rank [ y ]) { 
+                    p [ y ] = x ;
+                    setSize [ x ] += setSize [ y ];
+                }
+                else
+                {
+                    p [ x ] = y ;
+                    setSize [ y ] += setSize [ x ];
+                    if ( rank [ x ] == rank [ y ]) 
+                        rank [ y ]++; 
+                } 
+            }
         }
-      }
+        int numDisjointSets () { return numSets ; }
+        int sizeOfSet ( int i ) { return setSize [ findSet ( i ) ]; }
+};
+
+double distance(pair<double, double> p1, pair<double, double> p2){
+	return sqrt(abs(p1.first - p2.first) * abs(p1.first - p2.first) + abs(p1.second - p2.second) * abs(p1.second - p2.second));
+}
+
+int main(){
+    int X, Y;
+    cin >> X >> Y;
+    int n;
+    cin >> n;
+    vector<pair<double, double>> pts(n);
+    FOR(i,0,n)
+        cin >> pts[i].first >> pts[i].second;
+    
+    double prev_rad = 0.0;
+	double min_rad = 0.0;
+	double max_rad = max(double(Y), double(X));
+    double rad = (min_rad + max_rad) / 2.0;
+
+	while(abs(prev_rad - rad) > EPS){
+		VALUE(rad);
+		UnionFind uf(n);
+		vector<vector<bool>> touch(n, vector<bool>(4));
+		FOR(i,0,n){
+			if ((pts[i].first < rad) && abs(pts[i].first - rad) > EPS){
+				touch[i][0] = true;
+			}
+			else {
+				touch[i][0] = false;
+			}
+			if ((pts[i].first + rad > ((double)X)) && abs(pts[i].first + rad - (double(X)) ) > EPS){
+				touch[i][2] = true;
+			}
+			else {
+				touch[i][2] = false;
+			}
+			if ((pts[i].second < rad) && abs(pts[i].second - rad) > EPS){
+				touch[i][3] = true;
+			}
+			else {
+				touch[i][3] = false;
+			}
+			if ((pts[i].second + rad > ((double)Y)) && abs(pts[i].second + rad - (double(Y)) ) > EPS){
+				touch[i][1] = true;
+			}
+			else {
+				touch[i][1] = false;
+			}
+		}
+		FOR(i, 0, n){
+			FOR(j, 0, n){
+				if (i != j){
+					if (distance(pts[i], pts[j]) < (rad * (double (2))) && 
+						abs(distance(pts[i], pts[j]) - (rad * (double (2.0)))) > EPS){
+						vector<bool> touch1 = touch[uf.findSet(i)], touch2 = touch[uf.findSet(j)];
+						uf.unionSet(i, j);
+						FOR(l,0,4)
+							touch[uf.findSet(i)][l] = touch1[l] || touch2[l];
+					}
+				}
+			}
+		}
+
+		bool feasible = true;
+		FOR(i,0,n){
+			if (!feasible)
+				break;
+			if (touch[uf.findSet(i)][0] && touch[uf.findSet(i)][3])
+				feasible = false;
+			if (touch[uf.findSet(i)][0] && touch[uf.findSet(i)][2])
+				feasible = false;
+			if (touch[uf.findSet(i)][1] && touch[uf.findSet(i)][2])
+				feasible = false;
+			if (touch[uf.findSet(i)][1] && touch[uf.findSet(i)][3])
+				feasible = false;
+		}
+		VALUE(feasible);
+		prev_rad = rad;
+		if (feasible)
+			min_rad = rad;
+		else
+			max_rad = rad;
+		rad = (min_rad + max_rad) / 2.0;
+		
     }
 
-    bool no_sol = 0;
-    for(int i = 0 ; i < N ; i++ ){
-      set<int> s; 
-      for(int j = 0 ; j < N ; j++ ){
-        if(find_set(j)==i){
-            // Modify this
-          if( (end_y - pts[j].se < ra) && (abs(end_y - pts[j].se - ra) > eps ) )s.insert(1); 
-          if( (pts[j].se < ra) && (abs(pts[j].se - ra) > eps) )s.insert(3); 
-          if( (pts[j].fi < ra) && (abs(pts[j].fi - ra) > eps) )s.insert(2); 
-          if( (end_x - pts[j].fi < ra) && (abs(end_x - pts[j].fi - ra) > eps) )s.insert(4); 
-        }    
-      }
-
-      //  1_
-      // 2|  |4
-      //    3
-      //
-      if( s.count(1) + s.count(4) == 2 || s.count(2)+s.count(3) == 2 || s.count(1)+s.count(3)==2 || s.count(2)+s.count(4)==2){
-        no_sol = 1 ; 
-        break ;   
-      }
-    }
-    if( no_sol ){
-      r = ra ; 
-    }else{
-      l = ra  ; 
-      ans = ra ; 
-    }
-
-  }
-  cout << setprecision(6) << fixed << ans << endl; 
-
+	cout << setprecision(10) << fixed << rad << endl;
+	return 0;
 }
