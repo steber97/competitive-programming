@@ -69,5 +69,6 @@ This repo collects a few of the algorithm problems I have done so far in various
     - [c](https://github.com/steber97/competitive-programming/tree/main/swerc/2021/contest/c): Union Find Set and geometry.
     - [d](https://github.com/steber97/competitive-programming/tree/main/swerc/2021/contest/d): Dijkstra
     - [e](https://github.com/steber97/competitive-programming/tree/main/swerc/2021/contest/e)
+    - [i](https://github.com/steber97/competitive-programming/tree/main/swerc/2021/contest/i)
     - [k](https://github.com/steber97/competitive-programming/tree/main/swerc/2021/contest/k): suffix array and Longest Common Prefix
     
