@@ -1,4 +1,5 @@
 import abc
+import re
 
 
 # abstract class for nodes. Gets a value of some type, 
@@ -12,7 +13,10 @@ class Node:
         self.left = None
 
     def __repr__(self) -> str:
-        return "Node: {}".format(self.value)
+        return "Node: {}, left->{}, right->{}".format(
+            self.value, 
+            self.left.value if self.left is not None else "None",
+            self.right.value if self.right is not None else "None")
 
 class BinaryTree:
     def __init__(self) -> None:
@@ -52,6 +56,11 @@ class BinaryTree:
         if current_root is None:
             return None
         if current_root.value == value:
+            # If there are multiple nodes with the same value, then return the one is the 
+            # leftmost tree.
+            left_search = self._search_from_root(value, current_root.left)
+            if left_search != None and left_search.value == value:
+                return left_search
             return current_root
         elif value < current_root.value:
             return self._search_from_root(value, current_root.left)
@@ -86,19 +95,22 @@ class BinaryTree:
             node_to_delete = self.search(value)
             if node_to_delete is not None:
                 # First larger cannot have any left child!
-                first_larger = self.search_first_larger(node_to_delete.value)
-                assert first_larger.left is None
-                if first_larger.right is not None:
-                    first_larger.right.parent = first_larger.parent
-                    if first_larger.parent is not None:
-                        if first_larger.parent.right == first_larger:
-                            first_larger.parent.right = first_larger.right
-                        else:
-                            first_larger.parent.left = first_larger.right
-                
-                first_larger.parent = node_to_delete.parent
-                first_larger.right = node_to_delete.right
-                first_larger.left = node_to_delete.left
+                first_larger = self._search_first_larger_from_root(node_to_delete.value, node_to_delete)
+                print(first_larger)
+                assert first_larger is None or first_larger.left is None
+                if first_larger is not None:
+                    if first_larger.right is not None:
+                        first_larger.right.parent = first_larger.parent
+                        if first_larger.parent is not None:
+                            if first_larger.parent.right == first_larger:
+                                first_larger.parent.right = first_larger.right
+                            else:
+                                first_larger.parent.left = first_larger.right
+                    
+                    first_larger.parent = node_to_delete.parent
+                    # If first_larger == node_to_delete.right, avoid first_larger.right to be itself!
+                    first_larger.right = node_to_delete.right if node_to_delete.right != first_larger else first_larger.right
+                    first_larger.left = node_to_delete.left
                 if node_to_delete.parent is not None:
                     if node_to_delete.parent.right == node_to_delete:
                         node_to_delete.parent.right = first_larger
@@ -120,22 +132,3 @@ class BinaryTree:
             left_list = self._scan_from_node(current_root.left)
             right_list = self._scan_from_node(current_root.right)
             return left_list + [current_root] + right_list
-
-if __name__ == "__main__":
-    n = Node(0)
-    n1 = Node(1)
-    n2 = Node(-1)
-
-    bt = BinaryTree()
-    bt.insert(n)
-    bt.insert(n1)
-    bt.insert(n2)
-
-
-    print(bt.scan())
-
-    print(bt.search(1))
-    print(bt.search_first_larger(-1))
-
-    bt.delete(0)
-    print(bt.search(0))
