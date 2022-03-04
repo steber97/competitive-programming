@@ -4,6 +4,7 @@
 #include <unordered_set>
 #include <assert.h>
 #include <algorithm>
+#include <queue>
 
 using namespace std;
 
@@ -94,31 +95,47 @@ int main(){
     // map y, x
     int houses_per_antenna = N / M;
     sort(antennas.begin(), antennas.end(), sort_antennas_by_speed);
-    sort(buildings.begin(), buildings.end(), sort_building_by_speed);
+    vector<Building*> buildings_sorted(buildings);
+    sort(buildings_sorted.begin(), buildings_sorted.end(), sort_building_by_speed);
     unordered_map<int, unordered_set<int>> antennas_positions;
-    for (int i = 0, antenna_counter=0; i < M; i++,antenna_counter++)
-    {
-        long x = 0;
-        long y = 0;
-        int j;
-        int counter = 0;
-        for (j = i * houses_per_antenna; j < min((i+1) * houses_per_antenna, N); j++)
-        {
-            counter++;
-            x += buildings[j]->x;
-            y += buildings[j]->y;
-        }
-        x /= counter;
-        y /= counter;
-        if (antennas_positions.find(x)==antennas_positions.end() || antennas_positions[x].find(y)==antennas_positions[x].end()){
+    vector<bool> building_served(buildings.size(), false);
+    int antenna_index = 0;
+    vector<vector<bool>> map_covered(H, vector<bool>(W, false));
+    vector<vector<int>> buildings_on_map(H, vector<int>(W, -1));
+    for (int i = 0; i < buildings.size(); i++){
+        buildings_on_map[buildings[i]->y][buildings[i]->x] = buildings[i]->id;
+    }
+    for (int i = 0; i < buildings_sorted.size(); i++){
+        if (antenna_index == antennas.size())
+            break;
+        if (!building_served[buildings_sorted[i]->id]){
             s.antennas_placed.push_back(
-                new AntennaPlaced(antennas[antenna_counter], x, y));
-            if (antennas_positions.find(x)==antennas_positions.end())
-                antennas_positions[x] = unordered_set<int>();
-            antennas_positions[x].insert(y);
-        }
-        else{
-            antenna_counter--;
+                new AntennaPlaced(antennas[antenna_index], buildings_sorted[i]->x, buildings_sorted[i]->y));
+            
+            // position y, x
+            queue<pair<int,int>> q;
+            q.push({buildings_sorted[i]->y, buildings_sorted[i]->x});
+            while(!q.empty()){
+                pair<int, int> pos = q.front(); 
+                q.pop();
+                map_covered[pos.first][pos.second] = true;
+                if (buildings_on_map[pos.first][pos.second] != -1){
+                    // we have a building here!
+                    building_served[buildings_on_map[pos.first][pos.second]] = true;
+                }
+                for(int k = -1; k < 2; k++){
+                    for (int l = -1; l < 2; l++){
+                        if (pos.first + k >= 0 && pos.first + k < H && pos.second + l >= 0 && pos.second + l < W){
+                            if ((!map_covered[pos.first + k][pos.second + l]) && 
+                                    (abs(pos.first + k - buildings_sorted[i]->y) + abs(pos.second + l - buildings_sorted[i]->x) <= antennas[antenna_index]->range)){
+                                map_covered[pos.first + k][pos.second + l] = true;
+                                q.push({pos.first + k, pos.second + l});
+                            }
+                        }
+                    }
+                }
+            }
+            antenna_index++;
         }
     }
     s.print_solution();
