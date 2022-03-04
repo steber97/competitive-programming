@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <assert.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -59,6 +60,16 @@ class Solution{
     }
 };
 
+bool sort_antennas_by_speed(Antenna* a1, Antenna* a2)
+{
+    return a1->speed > a2->speed;
+}
+
+bool sort_building_by_speed(Building* b1, Building* b2)
+{
+    return b1->speed > b2->speed;
+}
+
 int main(){
     int W, H;
     cin >> W >> H;
@@ -81,24 +92,33 @@ int main(){
     // Solution 1
     Solution s;
     // map y, x
-    unordered_map<int, unordered_set<int>> positions_antennas;
-    for (int i = 0; i < M; i++)
+    int houses_per_antenna = N / M;
+    sort(antennas.begin(), antennas.end(), sort_antennas_by_speed);
+    sort(buildings.begin(), buildings.end(), sort_building_by_speed);
+    unordered_map<int, unordered_set<int>> antennas_positions;
+    for (int i = 0, antenna_counter=0; i < M; i++,antenna_counter++)
     {
-        while(true)
+        long x = 0;
+        long y = 0;
+        int j;
+        int counter = 0;
+        for (j = i * houses_per_antenna; j < min((i+1) * houses_per_antenna, N); j++)
         {
-            int x = int(rand() % W);
-            int y = int(rand() % H);
-            assert(x >= 0 && x < W);
-            assert(y >= 0 && y < H);
-            if (positions_antennas.find(y)==positions_antennas.end() || 
-                    positions_antennas[y].find(x) == positions_antennas[y].end()){
-                s.antennas_placed.push_back(new AntennaPlaced(antennas[i], x, y));
-                if (positions_antennas.find(y) == positions_antennas.end())
-                    positions_antennas[y] = unordered_set<int>();
-                positions_antennas[y].insert(x);
-                break;
-            }
-            
+            counter++;
+            x += buildings[j]->x;
+            y += buildings[j]->y;
+        }
+        x /= counter;
+        y /= counter;
+        if (antennas_positions.find(x)==antennas_positions.end() || antennas_positions[x].find(y)==antennas_positions[x].end()){
+            s.antennas_placed.push_back(
+                new AntennaPlaced(antennas[antenna_counter], x, y));
+            if (antennas_positions.find(x)==antennas_positions.end())
+                antennas_positions[x] = unordered_set<int>();
+            antennas_positions[x].insert(y);
+        }
+        else{
+            antenna_counter--;
         }
     }
     s.print_solution();
