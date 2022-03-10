@@ -25,9 +25,11 @@ public:
         this->fragments = vector<int>(fragments);
         this->id = id;
         this->partial_sum_fragments = vector<int>(this->fragments.size());
-        this->partial_sum_fragments[0] = this->fragments[0];
-        for (int i = 1; i < this->fragments.size(); i++){
-            this->partial_sum_fragments[i] = this->partial_sum_fragments[i-1] + this->fragments[i];
+        if (this->fragments.size() > 0){
+            this->partial_sum_fragments[0] = this->fragments[0];
+            for (int i = 1; i < this->fragments.size(); i++){
+                this->partial_sum_fragments[i] = this->partial_sum_fragments[i-1] + this->fragments[i];
+            }
         }
     }
 
@@ -55,33 +57,68 @@ public:
 };
 
 class DemonChallenged {
-    Demon* demon;
-    int turn;
+    public:
+        Demon* demon;
+        int turn;
+        DemonChallenged(Demon* demon, int turn){
+            this->demon = demon;
+            this->turn = turn;
+        };
 };
 
+bool sort_demons_by_decreasing_stamina_consumed(Demon* d1, Demon* d2){
+    return d1->stamina_consumed < d2->stamina_consumed;
+}
+
 void get_input(vector<Demon*>& demons, Pandora* pandora, int& turns, int& demons_number){
+    
+}
+
+int main(){
+
+    vector<Demon*> demons;
+
+    Pandora* pandora;
+    int turns;
+    int demons_number;
     int stamina_init, stamina_max;
     cin >> stamina_init >> stamina_max >> turns >> demons_number;
     pandora = new Pandora(stamina_init, stamina_max);
-
+    
     for (int i = 0; i < demons_number; i++){
         int stamina_consumed, turns_recover, stamina_recovered, number_of_fragments;
         cin >> stamina_consumed >> turns_recover >> stamina_recovered >> number_of_fragments;
         vector<int> fragments(number_of_fragments);
+        
         for (int j = 0; j < number_of_fragments; j++){
             cin >> fragments[j];
         }
+        
         demons.push_back(new Demon(stamina_consumed, turns_recover, stamina_recovered, number_of_fragments, fragments, i));
     }
-}
+    
+    sort(demons.begin(), demons.end(), sort_demons_by_decreasing_stamina_consumed);
+    
+    int actual_turn = 0;
+    int demon_iterator = 0;
+    vector<DemonChallenged*> solution;
+    vector<int> stamina_recovered_per_turn(turns, 0);
 
-int main(){
-    vector<Demon*> demons;
-    Pandora* pandora;
-    int turns;
-    int demons_number;
-    get_input(demons, pandora, turns, demons_number);
-    
-    
+    while(actual_turn < turns){
+        pandora->stamina += stamina_recovered_per_turn[actual_turn];
+        pandora->stamina = min(pandora->max_stamina, pandora->stamina);
+        if (pandora->stamina >= demons[demon_iterator]->stamina_consumed){
+            solution.push_back(new DemonChallenged(demons[demon_iterator], actual_turn));
+            if (actual_turn + demons[demon_iterator]->turns_to_wait < stamina_recovered_per_turn.size())
+                stamina_recovered_per_turn[actual_turn + demons[demon_iterator]->turns_to_wait] += demons[demon_iterator]->stamina_recovered;
+            demon_iterator++;
+        }
+        actual_turn++;
+        if (demon_iterator >= demons.size())
+            break;
+    }
+
+    for (int i = 0; i < solution.size(); i++)
+        cout << solution[i]->demon->id << endl;
     return 0;
 }
