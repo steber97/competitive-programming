@@ -69,7 +69,8 @@ class DemonChallenged {
 bool sort_demons_by_decreasing_stamina_consumed(Demon* d1, Demon* d2){
     // return d1->stamina_consumed < d2->stamina_consumed;
     if (d1->partial_sum_fragments.size() > 0 && d2->partial_sum_fragments.size() > 0){
-        return *(d1->partial_sum_fragments.end() - 1) / float(d1->stamina_consumed + 1) > *(d2->partial_sum_fragments.end() - 1) / float(d2->stamina_consumed + 1);
+        return (*(d1->partial_sum_fragments.end() - 1) * float(d1->stamina_recovered + 1)) / (float(d1->stamina_consumed + 1)) >
+               (*(d2->partial_sum_fragments.end() - 1) * float(d2->stamina_recovered + 1)) / (float(d2->stamina_consumed + 1));
     }
     else if (d1->partial_sum_fragments.size() > 0)
         return true;
