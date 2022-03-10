@@ -68,6 +68,8 @@ class DemonChallenged {
 
 bool sort_demons_by_decreasing_stamina_consumed(Demon* d1, Demon* d2){
     return d1->stamina_consumed < d2->stamina_consumed;
+    // if (d1->partial_sum_fragments.size() > 0 && d2->partial_sum_fragments.size() > 0)
+    //     return ((float)*(d1->partial_sum_fragments.end() - 1)) / ((float)d1->partial_sum_fragments.size() * (float) d1->stamina_consumed);
 }
 
 void get_input(vector<Demon*>& demons, Pandora* pandora, int& turns, int& demons_number){
@@ -103,19 +105,38 @@ int main(){
     int demon_iterator = 0;
     vector<DemonChallenged*> solution;
     vector<int> stamina_recovered_per_turn(turns, 0);
+    vector<bool> demon_taken(demons.size(), false);
+    int demons_taken_count = 0;
 
     while(actual_turn < turns){
         pandora->stamina += stamina_recovered_per_turn[actual_turn];
         pandora->stamina = min(pandora->max_stamina, pandora->stamina);
-        if (pandora->stamina >= demons[demon_iterator]->stamina_consumed){
+        if (pandora->stamina >= demons[demon_iterator]->stamina_consumed && !demon_taken[demon_iterator]){
             solution.push_back(new DemonChallenged(demons[demon_iterator], actual_turn));
+            demon_taken[demon_iterator] = true;
+            demons_taken_count++;
+            if (demons_taken_count == demons.size())
+                break;
             if (actual_turn + demons[demon_iterator]->turns_to_wait < stamina_recovered_per_turn.size())
                 stamina_recovered_per_turn[actual_turn + demons[demon_iterator]->turns_to_wait] += demons[demon_iterator]->stamina_recovered;
-            demon_iterator++;
+            while(true){
+                demon_iterator++;
+                demon_iterator %= demons.size();
+                if (demon_taken[demon_iterator])
+                    break;
+            }
+            actual_turn++;
+            
         }
-        actual_turn++;
-        if (demon_iterator >= demons.size())
-            break;
+        else {
+            while(true){
+                demon_iterator++;
+                demon_iterator %= demons.size();
+                if (demon_taken[demon_iterator])
+                    break;
+            }
+        }
+        
     }
 
     for (int i = 0; i < solution.size(); i++)
