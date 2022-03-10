@@ -2,6 +2,7 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <assert.h>
 
 using namespace std;
 
@@ -66,19 +67,56 @@ class DemonChallenged {
         };
 };
 
-bool sort_demons_by_decreasing_stamina_consumed(Demon* d1, Demon* d2){
-    // return d1->stamina_consumed < d2->stamina_consumed;
+// class DemonCompare
+// {
+// public:
+//     int turn;
+//     int max_turn;
+//     DemonCompare(int turn, int max_turn){
+//         this->turn = turn;
+//         this->max_turn = max_turn;
+//     };
+//     bool operator()(const Demon* d1, const Demon* d2) {
+//         if (d1->partial_sum_fragments.size() > 0 && d2->partial_sum_fragments.size() > 0){
+//             int p1 = d1->partial_sum_fragments.size() - 1;
+//             int p3 = d2->partial_sum_fragments.size() - 1;
+//             int p2 = this->max_turn - this->turn;
+//             assert ( min(p1, p2) < d1->partial_sum_fragments.size() && min(p1, p2) >= 0);
+//             assert ( min(p3, p2) < d2->partial_sum_fragments.size() && min(p3, p2) >= 0);
+//             // cout << p1 << " " << p2 << " " << p3 << " " << d1->partial_sum_fragments.size() <<  " " << d2->partial_sum_fragments.size() << endl;
+//             // cout << d1->partial_sum_fragments.at(min(p1, p2)) << endl;
+//             // cout << d2->partial_sum_fragments.at(min(p3, p2)) << endl;
+//             return d1->partial_sum_fragments.at(min(p1, p2)) > d2->partial_sum_fragments.at(min(p3, p2));
+//         }
+//         else if (d1->partial_sum_fragments.size() > 0){
+//             return true;
+//         }
+//         else if (d2->partial_sum_fragments.size() > 0){
+//             return false;
+//         }
+//         return true;
+//     };///This would handle the comparison using the is_case_sensitive flag
+    
+// };
+
+int turns;
+int actual_turn;
+bool compare_demons(Demon* d1, Demon* d2){
     if (d1->partial_sum_fragments.size() > 0 && d2->partial_sum_fragments.size() > 0){
-        return (*(d1->partial_sum_fragments.end() - 1) * float(d1->stamina_recovered + 1)) / (float(d1->stamina_consumed + 1)) >
-               (*(d2->partial_sum_fragments.end() - 1) * float(d2->stamina_recovered + 1)) / (float(d2->stamina_consumed + 1));
+        int p1 = d1->partial_sum_fragments.size() - 1;
+        int p3 = d2->partial_sum_fragments.size() - 1;
+        int p2 = turns - actual_turn;
+        return d1->partial_sum_fragments.at(min(p1, p2)) / float(d1->stamina_consumed+1.0) >
+         d2->partial_sum_fragments.at(min(p3, p2)) / (float(d2->stamina_consumed+1.0));
     }
-    else if (d1->partial_sum_fragments.size() > 0)
+    else if (d1->partial_sum_fragments.size() > 0){
         return true;
-    else if (d2->partial_sum_fragments.size() > 0)
-        return false;
-    else {
-        return 1 / float(d1->stamina_consumed + 1) > 1 / float(d2->stamina_consumed + 1);
     }
+    else if (d2->partial_sum_fragments.size() > 0){
+        return false;
+    }
+
+    return d1->id < d2->id;
 }
 
 void get_input(vector<Demon*>& demons, Pandora* pandora, int& turns, int& demons_number){
@@ -90,7 +128,6 @@ int main(){
     vector<Demon*> demons;
 
     Pandora* pandora;
-    int turns;
     int demons_number;
     int stamina_init, stamina_max;
     cin >> stamina_init >> stamina_max >> turns >> demons_number;
@@ -108,9 +145,8 @@ int main(){
         demons.push_back(new Demon(stamina_consumed, turns_recover, stamina_recovered, number_of_fragments, fragments, i));
     }
     
-    sort(demons.begin(), demons.end(), sort_demons_by_decreasing_stamina_consumed);
     
-    int actual_turn = 0;
+    actual_turn = 0;
     int demon_iterator = 0;
     vector<DemonChallenged*> solution;
     vector<bool> demon_taken(demons.size(), false);
@@ -119,20 +155,23 @@ int main(){
     vector<int> stamina_recovered_per_turn(turns, 0);
     
     while(actual_turn < turns){
-        pandora->stamina += stamina_recovered_per_turn[actual_turn];
+        sort(demons.begin(), demons.end(), compare_demons);
+        pandora->stamina += stamina_recovered_per_turn.at(actual_turn);
         pandora->stamina = min(pandora->max_stamina, pandora->stamina);
-        
-        if (demons[demon_iterator]->stamina_consumed <= pandora->stamina){
-            demons_taken[demon_iterator] = true;
-            solution.push_back(new DemonChallenged(demons[demon_iterator], actual_turn));
-            if (actual_turn + demons[demon_iterator]->turns_to_wait < stamina_recovered_per_turn.size())
-                stamina_recovered_per_turn[actual_turn + demons[demon_iterator]->turns_to_wait] += demons[demon_iterator]->stamina_recovered;
-            demon_iterator ++;   
+        for (int i = 0; i < demons.size(); i++){
+            if (!demons_taken.at(demons[i]->id)){
+                if (demons[i]->stamina_consumed <= pandora->stamina){
+                    demons_taken.at(demons[i]->id) = true;
+                    solution.push_back(new DemonChallenged(demons[i], actual_turn));
+                    if (actual_turn + demons[i]->turns_to_wait < stamina_recovered_per_turn.size())
+                        stamina_recovered_per_turn[actual_turn + demons[i]->turns_to_wait] += demons[i]->stamina_recovered;
+                    break;
+                }
+            }
         }
-
-        if (demon_iterator >= demons.size())
-            break;
         actual_turn++;
+        if (actual_turn % 1000 == 0)
+            cerr << actual_turn << endl;
     }
 
     for (int i = 0; i < solution.size(); i++)
