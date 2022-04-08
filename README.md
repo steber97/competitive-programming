@@ -2,6 +2,9 @@
 This repo collects a few of the algorithm problems I have done so far in various competitions/websites.
 
 ## Google Code Jam
+- 2022
+    - Qualification
+        - [ChainReaction](https://github.com/steber97/competitive-programming/tree/main/google-code-jam/2022/QualificationRound/ChainReaction/main.cpp): top sort, trees and DP.
 - 2021
     - Qualification
         - [Reversort](https://github.com/steber97/competitive-programming/tree/main/google-code-jam/2021/qualification/a)
