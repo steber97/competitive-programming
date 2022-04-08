@@ -96,7 +96,6 @@ class BinaryTree:
             if node_to_delete is not None:
                 # First larger cannot have any left child!
                 first_larger = self._search_first_larger_from_root(node_to_delete.value, node_to_delete)
-                print(first_larger)
                 assert first_larger is None or first_larger.left is None
                 if first_larger is not None:
                     if first_larger.right is not None:
@@ -132,3 +131,16 @@ class BinaryTree:
             left_list = self._scan_from_node(current_root.left)
             right_list = self._scan_from_node(current_root.right)
             return left_list + [current_root] + right_list
+
+    def get_first_element(self):
+        if self.root is None:
+            return None
+        else:
+            return self._get_first_element_from_node(self.root)
+    
+    def _get_first_element_from_node(self, current_root):
+        if current_root is None:
+            return None
+        if current_root.left is None:
+            return current_root
+        return self._get_first_element_from_node(current_root.left)
