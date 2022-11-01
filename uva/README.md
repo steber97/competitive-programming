@@ -73,3 +73,6 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 - [12190](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_3_paradigms/12190) Electric Bill (Binary search the answer)
 - [12455](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_3_paradigms/12455) Bars (Complete search)
 
+## Chapter 4: Graph
+
+- [11902](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11902) Dominator (DFS with taboo vertex).
