@@ -79,6 +79,7 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 - [469](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/469) Wetlands of Florida (Floodfill with tricky i/o).
 - [758](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/758) The same game (Floodfill).
 - [10004](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10004) Bicoloring (Bi color a graph with dfs - bipartite checking).
+- [11094](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11094) Continents (Floodfill with cyclic neighbors, very poorly explained).
 - [11831](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11831) Sticker Collector (Simulation of visit in a grid graph).
 - [11902](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11902) Dominator (DFS with taboo vertex).
 - [11906](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11906) Knight in a war grid (Flood fill with dfs. `unordered_set<ii>` with custom hashing).
