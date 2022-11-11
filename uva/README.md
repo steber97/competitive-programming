@@ -75,14 +75,17 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 
 ## Chapter 4: Graph
 
+- [315](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/315) Network (Find Articulation Points using Hopcroft-Tarjan algorithm).
 - [459](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/459) Graph Connectivity (Find connected components using dfs).
 - [469](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/469) Wetlands of Florida (Floodfill with tricky i/o).
 - [758](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/758) The same game (Floodfill).
+- [796](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/796) Critical Links (Find bridges - same principle as articulation points with Hopcroft Tarjan algorithm).
 - [872](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/872) Ordering (Topsort and backtrack, enum all possible sorting).
 - [10004](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10004) Bicoloring (Bi color a graph with dfs - bipartite checking).
 - [10305](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10305) Ordering Tasks (Top-sort a graph with dfs).
 - [11060](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11060) Beverages (Topsort using Kahn's algorithm - namely counting the indegree in the topological graph).
 - [11094](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11094) Continents (Floodfill with cyclic neighbors, very poorly explained).
+- [11396](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11396) Claw decomposition (Simple bipartite graph check. Actually non-trivial to prove that bipartite check solves the problem).
 - [11831](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11831) Sticker Collector (Simulation of visit in a grid graph).
 - [11902](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11902) Dominator (DFS with taboo vertex).
 - [11906](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11906) Knight in a war grid (Flood fill with dfs. `unordered_set<ii>` with custom hashing).
