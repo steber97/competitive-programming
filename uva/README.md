@@ -75,6 +75,7 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 
 ## Chapter 4: Graph
 
+- [247](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/247) Calling Circles (Find Strongly Connected Components SCC using Tarjan-SCC algorithm).
 - [315](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/315) Network (Find Articulation Points using Hopcroft-Tarjan algorithm).
 - [459](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/459) Graph Connectivity (Find connected components using dfs).
 - [469](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/469) Wetlands of Florida (Floodfill with tricky i/o).
@@ -87,6 +88,7 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 - [11060](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11060) Beverages (Topsort using Kahn's algorithm - namely counting the indegree in the topological graph).
 - [11094](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11094) Continents (Floodfill with cyclic neighbors, very poorly explained).
 - [11396](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11396) Claw decomposition (Simple bipartite graph check. Actually non-trivial to prove that bipartite check solves the problem).
+- [11504](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11504) Dominos (Find Strongly Connected Components SCC with Tarjan algorithm, such that there is no incoming edge from outside).
 - [11831](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11831) Sticker Collector (Simulation of visit in a grid graph).
 - [11902](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11902) Dominator (DFS with taboo vertex).
 - [11906](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11906) Knight in a war grid (Flood fill with dfs. `unordered_set<ii>` with custom hashing).

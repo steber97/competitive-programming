@@ -38,8 +38,9 @@ typedef vector<bool> vb;
 #define MODULUS 10000
 #define DELTA 0.0000001
 
+vvi result;
 
-vvi scc(int i, vvi& graph, vi& dfs_num, vi& dfs_low, vb& visited, stack<int>& s, int& count){
+void scc(int i, vvi& graph, vi& dfs_num, vi& dfs_low, vb& visited, stack<int>& s, int& count){
     /*
         Graph needs to be directed.
         dfs_low and dfs_num are set to -1.
@@ -47,7 +48,7 @@ vvi scc(int i, vvi& graph, vi& dfs_num, vi& dfs_low, vb& visited, stack<int>& s,
         parents is set to -1. 
         The root node (usually 0) must have itself as parent (usually parents[0] = 0).
     */
-    vvi res;
+    
     dfs_num[i] = dfs_low[i] = count++;
     visited[i] = true;
     s.push(i);
@@ -55,8 +56,7 @@ vvi scc(int i, vvi& graph, vi& dfs_num, vi& dfs_low, vb& visited, stack<int>& s,
     FOR(j,0,graph[i].size()){
         if (dfs_num[graph[i][j]] == -1){
             // Unvisited
-            vvi tmp = scc(graph[i][j], graph, dfs_num, dfs_low, visited, s, count);
-            res.insert(res.end(), tmp.begin(), tmp.end());
+            scc(graph[i][j], graph, dfs_num, dfs_low, visited, s, count);
         }
 
         if (visited[graph[i][j]]){
@@ -73,57 +73,57 @@ vvi scc(int i, vvi& graph, vi& dfs_num, vi& dfs_low, vb& visited, stack<int>& s,
             if (t == i)
                 break;
         }
-        res.push_back(scc_tmp);
+        result.push_back(scc_tmp);
     }
-    return res;
 
 }
 
 
 int main(){
-    int n,m;
-    cin >> n >> m;
-    int T = 1;
-    while(n!= 0){
-        if(T!=1)
-            cout << endl;
-        unordered_map<string, int> mapnames;
-        vector<string> revmap(n);
-        int counter = 0;
+    int T;
+    cin >> T;
+    FOR(t,0,T){
+        int n,m;
+        cin >> n >> m;
         vvi graph(n, vi());
         FOR(i,0,m){
-            string s1,s2;
-            cin >> s1 >> s2;
-            if (mapnames.find(s1) == mapnames.end()){
-                revmap[counter] = s1;
-                mapnames[s1] = counter++;
-            }
-            if (mapnames.find(s2) == mapnames.end()){
-                revmap[counter] = s2;
-                mapnames[s2] = counter++;
-            }
-            graph[mapnames[s1]].push_back(mapnames[s2]);
+            int a,b;
+            cin >> a >> b;
+            a--; b--;
+            graph[a].push_back(b);
         }
+
         int count = 0;
         vi dfs_num(n, -1), dfs_low(n, -1);
         vb visited(n, false);
         stack<int> s;
-        vvi result;
+        result.resize(0);
         FOR(i,0,n){
-            if (dfs_num[i]==-1){
-                vvi sccs = scc(i, graph, dfs_num, dfs_low, visited, s, count);
-                result.insert(result.end(), sccs.begin(), sccs.end());
+            if (dfs_num[i] == -1){
+                scc(i, graph, dfs_num, dfs_low, visited, s, count);
             }
         }
-        cout << "Calling circles for data set " << T << ":" << endl;
+
+        vi indeg(result.size(), 0);
+        vi map_scc(n);
         FOR(i,0,result.size()){
             FOR(j,0,result[i].size()){
-                cout << revmap[result[i][j]] << (j != result[i].size()-1 ? ", " : "");
+                map_scc[result[i][j]] = i;
             }
-            cout << endl;
         }
-        cin >> n >> m;
-        T++;
+        FOR(i,0,graph.size()){
+            FOR(j,0,graph[i].size()){
+                if (map_scc[graph[i][j]] != map_scc[i]){
+                    indeg[map_scc[graph[i][j]]] ++;
+                }
+            }
+        }
+
+        int count_res = 0;
+        FOR(i,0,indeg.size())
+            if (indeg[i]==0)
+                count_res++;
+        cout << count_res << endl;
     }
     return 0;
 }
