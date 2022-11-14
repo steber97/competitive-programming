@@ -91,6 +91,7 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 - [11396](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11396) Claw decomposition (Simple bipartite graph check. Actually non-trivial to prove that bipartite check solves the problem).
 - [11504](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11504) Dominos (Find Strongly Connected Components SCC with Tarjan algorithm, such that there is no incoming edge from outside).
 - [11831](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11831) Sticker Collector (Simulation of visit in a grid graph).
+- [11631](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11631) Dark Roads (Find Min Spanning Tree using Kruskal algorithm).
 - [11902](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11902) Dominator (DFS with taboo vertex).
 - [11906](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11906) Knight in a war grid (Flood fill with dfs. `unordered_set<ii>` with custom hashing).
 - [11953](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11953) Battleship (Flood fill).
