@@ -87,6 +87,7 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 - [10765](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10765) Doves and Bombs (Find articulation points, and count number of subtrees + 1 using Hopcroft-Tarjan algorithms).
 - [11060](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11060) Beverages (Topsort using Kahn's algorithm - namely counting the indegree in the topological graph).
 - [11094](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11094) Continents (Floodfill with cyclic neighbors, very poorly explained).
+- [11228](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11228) Transportation System (Find Minimum Spanning Tree (MST) with Prim's Algorithm).
 - [11396](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11396) Claw decomposition (Simple bipartite graph check. Actually non-trivial to prove that bipartite check solves the problem).
 - [11504](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11504) Dominos (Find Strongly Connected Components SCC with Tarjan algorithm, such that there is no incoming edge from outside).
 - [11831](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11831) Sticker Collector (Simulation of visit in a grid graph).
