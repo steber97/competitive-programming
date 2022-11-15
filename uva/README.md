@@ -86,6 +86,7 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 - [10048](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10048) Audiophobia (Build min spanning tree using Kruskal algorithm, then find edge with max weight in the path among two vertices using DP - minimax).
 - [10305](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10305) Ordering Tasks (Top-sort a graph with dfs).
 - [10369](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10369) Arctic Network (Min Spanning Forest with Kruskal algorithm, return n-th smallest edge of the spanning tree).
+- [10462](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10462) Is there a second way left? (Second best min spanning tree using Kruskal algorithm - try to make another spanning tree having one taboo edge at the time).
 - [10765](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10765) Doves and Bombs (Find articulation points, and count number of subtrees + 1 using Hopcroft-Tarjan algorithms).
 - [11060](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11060) Beverages (Topsort using Kahn's algorithm - namely counting the indegree in the topological graph).
 - [11094](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11094) Continents (Floodfill with cyclic neighbors, very poorly explained).
