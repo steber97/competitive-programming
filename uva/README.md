@@ -77,23 +77,24 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 
 - [247](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/247) Calling Circles (Find Strongly Connected Components SCC using Tarjan-SCC algorithm).
 - [315](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/315) Network (Find Articulation Points using Hopcroft-Tarjan algorithm).
+- [429](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/429) Word Transformation (Simple SSSP single source shortest path in unweighted graph, though with long graph build from words).
 - [459](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/459) Graph Connectivity (Find connected components using dfs).
 - [469](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/469) Wetlands of Florida (Floodfill with tricky i/o).
 - [758](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/758) The same game (Floodfill).
 - [796](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/796) Critical Links (Find bridges - same principle as articulation points with Hopcroft Tarjan algorithm).
 - [872](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/872) Ordering (Topsort and backtrack, enum all possible sorting).
+- [924](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/924) Spreading the news (SSSP single source shortest path in unweighted graph).
 - [10004](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10004) Bicoloring (Bi color a graph with dfs - bipartite checking).
-- [10048](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10048) Audiophobia (Build min spanning tree using Kruskal algorithm, then find edge with max weight in the path among two vertices using DP - minimax).
 - [10305](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10305) Ordering Tasks (Top-sort a graph with dfs).
-- [10369](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10369) Arctic Network (Min Spanning Forest with Kruskal algorithm, return n-th smallest edge of the spanning tree).
-- [10462](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10462) Is there a second way left? (Second best min spanning tree using Kruskal algorithm - try to make another spanning tree having one taboo edge at the time).
 - [10765](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10765) Doves and Bombs (Find articulation points, and count number of subtrees + 1 using Hopcroft-Tarjan algorithms).
 - [11060](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11060) Beverages (Topsort using Kahn's algorithm - namely counting the indegree in the topological graph).
 - [11094](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11094) Continents (Floodfill with cyclic neighbors, very poorly explained).
+- [11228](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11228) Transportation System (Find Minimum Spanning Tree (MST) with Prim's Algorithm).
 - [11396](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11396) Claw decomposition (Simple bipartite graph check. Actually non-trivial to prove that bipartite check solves the problem).
 - [11504](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11504) Dominos (Find Strongly Connected Components SCC with Tarjan algorithm, such that there is no incoming edge from outside).
 - [11831](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11831) Sticker Collector (Simulation of visit in a grid graph).
-- [11838](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11838) Come and Go (Check that the graph is a unique strongly connected component SCC with Tarjan algorithm).
+- [11631](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11631) Dark Roads (Find Min Spanning Tree using Kruskal algorithm).
+- [11747](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11747) Heavy Cycle Edges (Find min spanning tree, but return the edges that do not belong to the tree).
 - [11902](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11902) Dominator (DFS with taboo vertex).
 - [11906](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11906) Knight in a war grid (Flood fill with dfs. `unordered_set<ii>` with custom hashing).
 - [11953](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11953) Battleship (Flood fill).
