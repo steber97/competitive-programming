@@ -84,6 +84,7 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 - [796](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/796) Critical Links (Find bridges - same principle as articulation points with Hopcroft Tarjan algorithm).
 - [872](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/872) Ordering (Topsort and backtrack, enum all possible sorting).
 - [924](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/924) Spreading the news (SSSP single source shortest path in unweighted graph).
+- [929](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/929) Number Maze (Simple Dijkstra in 2d grid).
 - [10004](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10004) Bicoloring (Bi color a graph with dfs - bipartite checking).
 - [10305](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10305) Ordering Tasks (Top-sort a graph with dfs).
 - [10765](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10765) Doves and Bombs (Find articulation points, and count number of subtrees + 1 using Hopcroft-Tarjan algorithms).
@@ -99,3 +100,4 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 - [11902](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11902) Dominator (DFS with taboo vertex).
 - [11906](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11906) Knight in a war grid (Flood fill with dfs. `unordered_set<ii>` with custom hashing).
 - [11953](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11953) Battleship (Flood fill).
+- [12160](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/12160) Unlock the Lock (Simple Single Source Shortest Path problem).
