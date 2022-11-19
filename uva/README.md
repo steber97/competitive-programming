@@ -89,6 +89,7 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 - [10004](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10004) Bicoloring (Bi color a graph with dfs - bipartite checking).
 - [10305](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10305) Ordering Tasks (Top-sort a graph with dfs).
 - [10765](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10765) Doves and Bombs (Find articulation points, and count number of subtrees + 1 using Hopcroft-Tarjan algorithms).
+- [10986](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10986) Sending Emails (Dijkstra in undirected weighted graph).
 - [11060](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11060) Beverages (Topsort using Kahn's algorithm - namely counting the indegree in the topological graph).
 - [11094](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11094) Continents (Floodfill with cyclic neighbors, very poorly explained).
 - [11101](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/11101) Mall Mania (simple multiple source shortest path).
