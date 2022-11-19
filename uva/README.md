@@ -85,6 +85,7 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 - [872](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/872) Ordering (Topsort and backtrack, enum all possible sorting).
 - [924](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/924) Spreading the news (SSSP single source shortest path in unweighted graph).
 - [929](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/929) Number Maze (Simple Dijkstra in 2d grid).
+- [1112](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/1112) Mice Maze (Simple Dijkstra in weighted graph).
 - [10004](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10004) Bicoloring (Bi color a graph with dfs - bipartite checking).
 - [10305](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10305) Ordering Tasks (Top-sort a graph with dfs).
 - [10765](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_4_graphs/10765) Doves and Bombs (Find articulation points, and count number of subtrees + 1 using Hopcroft-Tarjan algorithms).
