@@ -2,7 +2,7 @@
 
 This folder contains the exercises of CP3 book solved. They are divided by chapter. This page is useful in order to know which problem is about which algorithm.
 
-## Chapter 1 ad-hoc
+## Chapter 1: ad-hoc
 
 - [454](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_1_adhoc/454) Anagrams (anagrams)
 - [579](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_1_adhoc/579) Clock hands (time, angle between analog hands of clock)
@@ -13,7 +13,7 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 - [10315](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_1_adhoc/10315) Pocker hands (card games)
 - [10443](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_1_adhoc/10443) Tock scissor paper (games, 2d array manipulation)
 
-## Chapter 2 Datastructures
+## Chapter 2: Datastructures
 
 - [599](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_2_datastructures/599) The forrest in the trees (Union Find Set)
 - [732](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_2_datastructures/732) Anagram by Stack (Stack)
@@ -30,7 +30,7 @@ This folder contains the exercises of CP3 book solved. They are divided by chapt
 - [12086](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_2_datastructures/12086) Potentiometers (Fenwick tree)
 - [12356](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_2_datastructures/12356) Army buddies (1d array)
 
-## Chapter 3 Problem Solving Paradigms
+## Chapter 3: Problem Solving Paradigms
 
 - [108](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_3_paradigms/108) Maximum sub (DP with 2d matrix and O(n^4) time)
 - [216](https://github.com/steber97/competitive-programming/tree/main/uva/chapter_3_paradigms/216) Getting in line (DP for traveling salesman problem tsp)
