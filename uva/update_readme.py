@@ -15,7 +15,7 @@ def handle_uva_readme(filename: str, msg: str):
     
     lines_in = []
     lines_out = []
-    with open("README.md") as f:
+    with open("uva/README.md") as f:
         for l in f:
             lines_in.append(l)
     
@@ -70,7 +70,7 @@ def handle_uva_readme(filename: str, msg: str):
         print("New line added to README.md")
         print(newline)
     
-    with open("README.md", 'w') as f:
+    with open("uva/README.md", 'w') as f:
         f.writelines(lines_in)
 
 if __name__=="__main__":
