@@ -26,7 +26,7 @@ def handle_uva_readme(filename: str, commit_msg: str):
 
     @param filename: string with path to file added. 
         Should be the main solver under a folder in `uva/chapter_x_.../problemnumber/main.*`
-    @param msg: commit message of the form `Add UVa problemnumber problemname somedescription"
+    @param commit_msg: commit message of the form `Add UVa problemnumber problemname somedescription"
     """
     if 'chapter_' not in filename:
         print("Chapter not specified as `chapter_` in the filename {}".format(filename))
@@ -50,7 +50,7 @@ def handle_uva_readme(filename: str, commit_msg: str):
     # Get where chapter starts and where it ends (line number).
     chapter_intervals = []
     for i in range(len(lines_in)):
-        if CHAPTER_IDENTIFIER in lines_in[i]:
+        if lines_in[i][:len(CHAPTER_IDENTIFIER)] == CHAPTER_IDENTIFIER:
             if len(chapter_intervals) == 0:
                 chapter_intervals.append([i+1, i+1])
             else:
@@ -59,6 +59,9 @@ def handle_uva_readme(filename: str, commit_msg: str):
     if len(chapter_intervals) > 0:
         chapter_intervals[-1][1] = len(lines_in)
     
+    print(chapter_intervals)
+    print(chapter)
+
     pos = -1
     chapter_name = ""
     if chapter <= len(chapter_intervals):
@@ -131,7 +134,7 @@ if __name__=="__main__":
     if len(files) == 1:
         if "Add UVa" in commit_msg:
             if 'uva/' in files[0]:
-                handle_uva_readme(files[0], msg)
+                handle_uva_readme(files[0], commit_msg)
             else:
                 print("path {} misses `uva/` folder".format(files[0]))
         else:
