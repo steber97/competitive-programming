@@ -59,15 +59,18 @@ def handle_uva_readme(filename: str, msg: str):
     if pos != -1:
         if pos == len(lines_in):
             lines_in[-1] = lines_in[-1] if lines_in[-1][-1] == '\n' else lines_in[-1] + '\n'
-        lines_in.insert(pos, "- [{}]({}{}/{}) {}\n".format(
+        newline = "- [{}]({}{}/{}) {}\n".format(
             number, 
             "https://github.com/steber97/competitive-programming/tree/main/uva/",
             chapter_name,
             number,
             msg.split("Add UVa {} ".format(number))[1]
-        ))
+        )
+        lines_in.insert(pos, newline)
+        print("New line added to README.md")
+        print(newline)
     
-    with open("README_copy.md", 'w') as f:
+    with open("README.md", 'w') as f:
         f.writelines(lines_in)
 
 if __name__=="__main__":
