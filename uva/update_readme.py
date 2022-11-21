@@ -58,9 +58,6 @@ def handle_uva_readme(filename: str, commit_msg: str):
                 chapter_intervals.append([i+1,i+1])
     if len(chapter_intervals) > 0:
         chapter_intervals[-1][1] = len(lines_in)
-    
-    print(chapter_intervals)
-    print(chapter)
 
     pos = -1
     chapter_name = ""
