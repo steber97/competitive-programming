@@ -1,5 +1,7 @@
 import numpy as np
 
+# Problem available at https://swerc.eu/2022/problems/
+
 if __name__ == "__main__":
     a = input()
     n, m = a.split()
